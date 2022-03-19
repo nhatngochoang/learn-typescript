@@ -76,3 +76,43 @@ interface Person {
 }
 
 type LazyPerson = Getters<Person>
+
+// Record<Keys,Type>
+
+interface Info{
+   age: number;
+   breed: string
+}
+
+type Name = 'Cat1' | 'Cat2' 
+
+const cats: Record<Name, Info> = {
+   Cat1: { age: 1, breed: 'name1' },
+   Cat2: { age: 2, breed: 'name2' },
+}
+
+cats.Cat1
+
+
+// Pick<Type,Keys> ➤ make new type by pick some keys from old
+
+interface Todo{
+   title: string
+   desc: string
+   completed: boolean
+}
+
+type TodoPreview = Pick<Todo, 'title' | 'desc'  >
+
+const todo: TodoPreview ={
+   title: 'Todo',
+   desc: 'todo desc'
+}
+
+todo
+
+// Omit<Type,Keys> ➤ make new type by pick -(some keys from old)
+
+// ReturnType ➤ make new type === return type
+type T0 = ReturnType<()=> string>
+

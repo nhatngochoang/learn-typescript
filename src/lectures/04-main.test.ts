@@ -13,7 +13,7 @@ describe('isPositive()', () => {
          });
 
          it('should return false when n <0',() =>{
-               expect(isPositive(-1) === false);
+               expect(isPositive(-1).toBe(false));
                expect(isPositive(-2) === false);
                expect(isPositive(-5) === false);
             })

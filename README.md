@@ -10,3 +10,10 @@ npm install --save-dev jest
 
 # Test setup
 https://kulshekhar.github.io/ts-jest/
+
+jest.config.js
+/** @type {import('ts-jest/dist/types').InitialOptionsTsJest} */
+module.exports = {
+  preset: 'ts-jest',
+  testEnvironment: 'node',
+};

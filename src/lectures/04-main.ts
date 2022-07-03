@@ -146,3 +146,5 @@ todo;
 
 // ReturnType ➤ make new type === return type
 type T0 = ReturnType<() => string>;
+
+

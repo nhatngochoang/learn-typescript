@@ -10,6 +10,7 @@ const arrNum = makeArr(1);
 // 2 Args
 const makeTuple = <X, Y = number>(x: X, y: Y): [X, Y] => [x, y];
 
+/*----------------------------------------------------------------*/
 // Make new data base on old data
 const makeFullName = <T extends { fName: string; lName: string }>(obj: T) => ({
   ...obj,
@@ -31,6 +32,7 @@ const addId = <T extends object>(item: T) => {
 const item1 = addId({ name: 'Nhat', age: 20 });
 console.log(item1);
 
+/*----------------------------------------------------------------*/
 // Generics in Interface
 // 1 arg
 interface List<Type> {
@@ -47,7 +49,16 @@ interface List2<T, K> {
   length: number;
   [index: number]: T;
 }
+// Index Signature
+class SeatAssignment {
+  [seatNumber: string]: string;
+}
 
+let seats = new SeatAssignment();
+seats.A1 = 'Mosh';
+seats['A2'] = 'John';
+console.log(seats);
+/*----------------------------------------------------------------*/
 interface Student {
   id: number;
   name: string;

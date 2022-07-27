@@ -1,14 +1,14 @@
 // 1 Arg same
 const lastT = <T>(arr: Array<T>) => arr[arr.length - 1];
 const lNum = lastT([1, 2, 3]);
-const lStr = lastT(['a', 'b', 'c']);
+const lStr = lastT(["a", "b", "c"]);
 const lDynamic = lastT<boolean>([true, false, false]);
 
 const makeArr = <T>(x: T) => [x];
 const arrNum = makeArr(1);
 
 // 2 Args
-const makeTuple = <X, Y = number>(x: X, y: Y): [X, Y] => [x, y];
+const makeTupleWithDefault = <X, Y = number>(x: X, y: Y): [X, Y] => [x, y];
 
 /*----------------------------------------------------------------*/
 // Make new data base on old data
@@ -17,7 +17,7 @@ const makeFullName = <T extends { fName: string; lName: string }>(obj: T) => ({
   fullName: obj.fName + obj.lName,
 });
 
-const fullname1 = makeFullName({ fName: 'Nhat', lName: 'Hoang', age: 20 });
+const fullname1 = makeFullName({ fName: "Nhat", lName: "Hoang", age: 20 });
 console.log(fullname1);
 
 // Make new data not base on old data
@@ -29,7 +29,7 @@ const addId = <T extends object>(item: T) => {
   };
 };
 
-const item1 = addId({ name: 'Nhat', age: 20 });
+const item1 = addId({ name: "Nhat", age: 20 });
 console.log(item1);
 
 /*----------------------------------------------------------------*/
@@ -55,8 +55,8 @@ class SeatAssignment {
 }
 
 let seats = new SeatAssignment();
-seats.A1 = 'Mosh';
-seats['A2'] = 'John';
+seats.A1 = "Mosh";
+seats["A2"] = "John";
 console.log(seats);
 /*----------------------------------------------------------------*/
 interface Student {
@@ -68,8 +68,8 @@ interface Student {
 const numberList: Array<number> = [1, 2, 3];
 const numberList2: List<number> = [1, 2, 3];
 
-const wordList: Array<string> = ['easy', 'frontend'];
-const wordList2: List<string> = ['easy', 'frontend'];
+const wordList: Array<string> = ["easy", "frontend"];
+const wordList2: List<string> = ["easy", "frontend"];
 
 // Example 2
 interface Source<T> {
@@ -81,21 +81,21 @@ interface Source<T> {
 type ListSource = Source<number[]>;
 const listSource: ListSource = {
   uid: 12,
-  name: 'nhat',
+  name: "nhat",
   data: [1, 2, 3],
 };
 // Get all student keys ➤ literal type
 type StudentKeys = keyof Student;
-const keyList: StudentKeys = 'id';
+const keyList: StudentKeys = "id";
 
 const studentList: Array<Student> = [
-  { id: 1, name: 'Alice' },
-  { id: 2, name: 'Bob' },
+  { id: 1, name: "Alice" },
+  { id: 2, name: "Bob" },
 ];
 
 const studentList2: List<Student> = [
-  { id: 1, name: 'Alice' },
-  { id: 2, name: 'Bob' },
+  { id: 1, name: "Alice" },
+  { id: 2, name: "Bob" },
 ];
 
 // Mapped Types
@@ -112,7 +112,9 @@ type FeatureOptions = OptionsFlags<FeatureFlags>;
 
 // Complex Map
 type Getters<T> = {
-  [Property in keyof T as `get${Capitalize<string & Property>}`]: () => T[Property];
+  [Property in keyof T as `get${Capitalize<
+    string & Property
+  >}`]: () => T[Property];
 };
 
 interface Person {

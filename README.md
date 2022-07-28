@@ -17,3 +17,6 @@ module.exports = {
   preset: 'ts-jest',
   testEnvironment: 'node',
 };
+
+# Reference: 
+https://comdy.vn/typescript/

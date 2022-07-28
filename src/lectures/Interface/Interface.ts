@@ -6,23 +6,24 @@
 // }
 
 interface Calendar {
-   name: string
-   addEvent(): void
-   removeEvent(): void
+  readonly name: string;
+  addEvent(): void;
+  removeEvent(): void;
 }
 
 // if code has logic use Class
+// Can extend multiple interfaces
 interface CloudCalendar extends Calendar {
-   sync(): void
+  sync(): void;
 }
 
 class GoogleCalendar implements Calendar {
-   constructor(public name: string) {}
+  constructor(public name: string) {}
 
-   addEvent(): void {
-      throw new Error('')
-   }
-   removeEvent(): void {
-      throw new Error('')
-   }
+  addEvent(): void {
+    throw new Error("");
+  }
+  removeEvent(): void {
+    throw new Error("");
+  }
 }

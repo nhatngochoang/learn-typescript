@@ -8,17 +8,29 @@ const makeArr = <T>(x: T) => [x];
 const arrNum = makeArr(1);
 
 // 2 Args
+const makeArrXY = <X, Y>(x: X, y: Y) => [x, y];
 const makeTupleWithDefault = <X, Y = number>(x: X, y: Y): [X, Y] => [x, y];
 
 /*----------------------------------------------------------------*/
 // Make new data base on old data
-const makeFullName = <T extends { fName: string; lName: string }>(obj: T) => ({
+const makeFullNameConstraintGenerics = <
+  T extends { fName: string; lName: string }
+>(
+  obj: T
+) => ({
   ...obj,
   fullName: obj.fName + obj.lName,
 });
+const fullName = makeFullNameConstraintGenerics({
+  fName: "Nam",
+  lName: "Hoang",
+  age: 20,
+});
 
-const fullname1 = makeFullName({ fName: "Nhat", lName: "Hoang", age: 20 });
-console.log(fullname1);
+const makeFullNameConstraint = (obj: { fName: string; lName: string }) => ({
+  ...obj,
+  fullName: `${obj.fName} ${obj.lName}`,
+});
 
 // Make new data not base on old data
 const addId = <T extends object>(item: T) => {
@@ -28,9 +40,24 @@ const addId = <T extends object>(item: T) => {
     uid,
   };
 };
-
-const item1 = addId({ name: "Nhat", age: 20 });
+const item1 = addId({ name: "Doe", age: 20 });
 console.log(item1);
+
+const add_Generics = <T extends { name: string }>(employee: T) => {
+  const uid = Math.floor(Math.random() * 10000);
+
+  return {
+    ...employee,
+    uid,
+  };
+};
+
+const employee = add_Generics({
+  name: "John",
+  age: 20,
+});
+console.log(employee);
+console.log(employee.name);
 
 /*----------------------------------------------------------------*/
 // Generics in Interface
@@ -49,6 +76,7 @@ interface List2<T, K> {
   length: number;
   [index: number]: T;
 }
+
 // Index Signature
 class SeatAssignment {
   [seatNumber: string]: string;
@@ -59,7 +87,7 @@ seats.A1 = "Mosh";
 seats["A2"] = "John";
 console.log(seats);
 /*----------------------------------------------------------------*/
-interface Student {
+interface IStudent {
   id: number;
   name: string;
 }
@@ -81,19 +109,19 @@ interface Source<T> {
 type ListSource = Source<number[]>;
 const listSource: ListSource = {
   uid: 12,
-  name: "nhat",
+  name: "John",
   data: [1, 2, 3],
 };
 // Get all student keys ➤ literal type
-type StudentKeys = keyof Student;
+type StudentKeys = keyof IStudent;
 const keyList: StudentKeys = "id";
 
-const studentList: Array<Student> = [
+const studentList: Array<IStudent> = [
   { id: 1, name: "Alice" },
   { id: 2, name: "Bob" },
 ];
 
-const studentList2: List<Student> = [
+const studentList2: List<IStudent> = [
   { id: 1, name: "Alice" },
   { id: 2, name: "Bob" },
 ];
@@ -124,3 +152,41 @@ interface Person {
 }
 
 type LazyPerson = Getters<Person>;
+
+// Record<Keys,Type>
+
+interface Info {
+  age: number;
+  breed: string;
+}
+
+type Name = "Cat1" | "Cat2";
+
+const cats: Record<Name, Info> = {
+  Cat1: { age: 1, breed: "name1" },
+  Cat2: { age: 2, breed: "name2" },
+};
+
+cats.Cat1;
+
+// Pick<Type,Keys> ➤ make new type by pick some keys from old
+
+interface Todo {
+  title: string;
+  desc: string;
+  completed: boolean;
+}
+
+type TodoPreview = Pick<Todo, "title" | "desc">;
+
+const todo: TodoPreview = {
+  title: "Todo",
+  desc: "todo desc",
+};
+
+todo;
+
+// Omit<Type,Keys> ➤ make new type by pick -(some keys from old)
+
+// ReturnType ➤ make new type === return type
+type T = ReturnType<() => string>;

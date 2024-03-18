@@ -7,6 +7,6 @@ export class Teacher extends Person {
    }
 }
 
-// let teacherObj = new Teacher('Thu', 'Huong')
+// let teacherObj = new Teacher('Nhat', 'Hoang')
 
 // console.log(teacherObj.fullName)

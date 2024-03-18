@@ -1,8 +1,8 @@
 export class Person {
-   constructor(public firseName: string, public lastName: string) {}
+   constructor(public firstName: string, public lastName: string) {}
 
    get fullName() {
-      return this.firseName + ' ' + this.lastName
+      return this.firstName + ' ' + this.lastName
    }
 
    walk() {
@@ -11,8 +11,8 @@ export class Person {
 }
 
 export class Student extends Person {
-   constructor(public studentId: number, firseName: string, lastName: string) {
-      super(firseName, lastName)
+   constructor(public studentId: number, firstName: string, lastName: string) {
+      super(firstName, lastName)
    }
 
    learn() {
